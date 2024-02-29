@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thông tin</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* Nền trắng */
+            color: #000; /* Chữ đen */
+        }
+        .container {
+            background-color: #FF0000; /* Nền đỏ */
+            color: #fff; /* Chữ trắng */
+            padding: 10px;
+            text-align: center;
+            max-width: 100%; /* Mở rộng container tối đa */
+            margin: 0 auto; /* Canh giữa container */
+            display: flex; /* Sử dụng flexbox */
+            align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+            justify-content: space-between; /* Canh các phần tử theo chiều ngang */
+        }
+        .logo img {
+            background-color: #fff; /* Nền trắng cho hình ảnh */
+            padding: 5px; /* Tăng khoảng cách giữa hình ảnh và nền đỏ */
+            border-radius: 5px; /* Bo tròn góc cho hình ảnh */
+        }
+        .logo {
+            flex-shrink: 0; /* Không cho phần logo co lại */
+        }
+        .content {
+            flex-grow: 1; /* Phần còn lại sẽ chiếm toàn bộ khoảng trống */
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        .title {
+            text-align: center;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #FF0000;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .button:hover {
+            background-color: #8b0303;
+        }
+
+        .button:active {
+            background-color: #8b0303;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="Logo_PTIT_University.png" alt="Logo" width="100">
+        </div>
+        <div class="content">
+            <h2>HỆ THỐNG THI TRẮC NGHIỆM TRỰC TUYẾN</h2>
+            <h2>HOC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG</h2>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="title">
+            <h2>THÔNG TIN THÍ SINH</h2>
+        </div>
+        
+        <form id="personalInfoForm" onsubmit="return validateForm()">
+            <label for="fullName">Họ tên:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="dob">Ngày tháng năm sinh:</label>
+            <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy" required>
+
+            <label for="studentID">Mã sinh viên:</label>
+            <input type="text" id="studentID" name="studentID" required>
+
+            <label for="class">Lớp:</label>
+            <input type="text" id="class" name="class" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <a href="Baithi.html" class = "button">Submit</a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.getElementById("personalInfoForm");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu mặc định
+    
+                var fullName = document.getElementById("fullName").value.trim();
+                var dob = document.getElementById("dob").value.trim();
+                var studentID = document.getElementById("studentID").value.trim();
+                var className = document.getElementById("class").value.trim();
+    
+                if (fullName === '' || dob === '' || studentID === '' || className === '') {
+                    alert("Yêu cầu nhập đủ thông tin.");
+                    return false;
+                }
+    
+                var dateRegex = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+                if (!dateRegex.test(dob)) {
+                    alert("Chưa đúng định dạng ngày sinh (dd/mm/yyyy).");
+                    return false;
+                }
+    
+                alert("Khai báo thông tin thành công!");
+                // Chuyển hướng người dùng sang trang bài thi
+                window.location.href = "Baithi.html";
+            });
+        });
+    </script>
+    
+</body>
+</html>

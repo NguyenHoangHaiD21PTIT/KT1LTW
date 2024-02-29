@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* Nền trắng */
+            color: #000; /* Chữ đen */
+        }
+        .container {
+            background-color: #FF0000; /* Nền đỏ */
+            color: #fff; /* Chữ trắng */
+            padding: 5px;
+            text-align: center;
+            max-width: 100%; /* Mở rộng container tối đa */
+            margin: 0 auto; /* Canh giữa container */
+            display: flex; /* Sử dụng flexbox */
+            align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+            justify-content: space-between; /* Canh các phần tử theo chiều ngang */
+        }
+        .logo img {
+            background-color: #fff; /* Nền trắng cho hình ảnh */
+            padding: 5px; /* Tăng khoảng cách giữa hình ảnh và nền đỏ */
+            border-radius: 5px; /* Bo tròn góc cho hình ảnh */
+        }
+        .logo {
+            flex-shrink: 0; /* Không cho phần logo co lại */
+        }
+        .content {
+            flex-grow: 1; /* Phần còn lại sẽ chiếm toàn bộ khoảng trống */
+        }
+        .completed-questions {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="Logo_PTIT_University.png" alt="Logo" width="100">
+        </div>
+        <div class="content">
+            <h2>HỆ THỐNG THI TRẮC NGHIỆM TRỰC TUYẾN</h2>
+            <h2>HOC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG</h2>    
+        </div>
+    </div>
+
+    <div class="completed-questions">
+        <p>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI</p>
+        <p>Số câu đã hoàn thành: <span id="completedCount">0</span></p>
+    </div>
+
+    <script>
+        // JavaScript code here
+        // Kiểm tra xem có số câu hoàn thành đã lưu trong localStorage không
+        if(localStorage.getItem('completedCount')) {
+            // Lấy số câu đã hoàn thành từ localStorage
+            var completedCount = localStorage.getItem('completedCount');
+            // Cập nhật phần tử có id là completedCount với số câu đã lấy được
+            document.getElementById('completedCount').innerText = completedCount;
+        }
+    </script>
+</body>
+</html>

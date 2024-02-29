@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bài Thi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* Nền trắng */
+            color: #000; /* Chữ đen */
+        }
+        .container {
+            background-color: #FF0000; /* Nền đỏ */
+            color: #fff; /* Chữ trắng */
+            padding: 10px;
+            text-align: center;
+            max-width: 100%; /* Mở rộng container tối đa */
+            margin: 0 auto; /* Canh giữa container */
+            display: flex; /* Sử dụng flexbox */
+            align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+            justify-content: space-between; /* Canh các phần tử theo chiều ngang */
+        }
+        .logo img {
+            background-color: #fff; /* Nền trắng cho hình ảnh */
+            padding: 5px; /* Tăng khoảng cách giữa hình ảnh và nền đỏ */
+            border-radius: 5px; /* Bo tròn góc cho hình ảnh */
+        }
+        .logo {
+            flex-shrink: 0; /* Không cho phần logo co lại */
+        }
+        .content {
+            flex-grow: 1; /* Phần còn lại sẽ chiếm toàn bộ khoảng trống */
+        }
+        .exam-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        #countdown {
+            text-align: center; /* Căn giữa dòng */
+            font-size: 19px; /* Đặt kích thước font */
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+        }
+        .end{
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #FF0000;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .button:hover {
+            background-color: #8b0303;
+        }
+
+        .button:active {
+            background-color: #8b0303;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="Logo_PTIT_University.png" alt="Logo" width="100">
+        </div>
+        <div class="content">
+            <h2>HỆ THỐNG THI TRẮC NGHIỆM TRỰC TUYẾN</h2>
+            <h2>HOC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG</h2>
+        </div>
+    </div>
+
+    <div class="exam-container">
+        <div class = "title">
+            <h3>ĐỀ KIỂM TRA HỌC KỲ 1 NĂM HỌC 2024 - 2025</h3>
+        </div>
+        
+        <script>
+            // JavaScript code here
+            var intervalId;
+            var secondsRemaining = 7600; // 60 minutes * 60 seconds
+            window.onload = function() {
+                function updateCountdown() {
+                    var minutes = Math.floor(secondsRemaining / 60);
+                    var seconds = secondsRemaining % 60;
+                    document.getElementById("countdown").innerText = "Thời gian còn lại: " + minutes + " phút " + seconds + " giây";
+                    secondsRemaining--;
+                    if (secondsRemaining < 0) {
+                        clearInterval(intervalId);
+                        document.getElementById("countdown").innerText = "Hết giờ!";
+                        alert("Đã hết giờ làm bài, yêu cầu thí sinh nộp bài");
+                        // Redirect to a new page (you can replace "new_page.html" with the actual URL)
+                        window.location.href = "welcome.html";
+                    }
+                }
+    
+                updateCountdown();
+                var intervalId = setInterval(updateCountdown, 1000);
+            };
+        </script>
+        <div id="countdown">Thời gian còn lại: 60 phút 00 giây</div>
+        <div class="question">
+            <h3>PHẦN I: CÂU HỎI LỰA CHỌN ĐÚNG/SAI</h3>
+            <p>Với mỗi câu hỏi từ 1 đến 10, thí sinh chỉ tick vào 1 trong 2 phương án: đúng hoặc sai</p>
+            <h3>Câu 1.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option1" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option1" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 2.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option2" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option2" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 3.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option3" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option3" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 4.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option4" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option4" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 5.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option5" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option5" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 6.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option6" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option6" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 7.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option7" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option7" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 8.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option8" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option8" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 9.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option9" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option9" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>Câu 10.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option10" value="option1" onclick="completeQuestion()"> A. Đúng</li>
+                <li><input type="radio" name="option10" value="option2" onclick="completeQuestion()"> B. Sai</li>
+            </ul>
+            <h3>PHẦN II: CÂU HỎI CHỈ CÓ MỘT LỰA CHỌN</h3>
+            <p>Với mỗi câu hỏi từ 11 đến 20, thí sinh chỉ tick vào MỘT phương án đúng nhất trong 4 phương án cho trước</p>
+            <h3>Câu 11.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option11" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option11" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option11" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option11" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 12.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option12" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option12" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option12" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option12" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 13.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option13" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option13" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option13" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option13" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 14.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option14" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option14" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option14" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option14" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 15.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option15" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option15" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option15" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option15" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 16.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option16" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option16" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option16" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option16" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 17.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option17" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option17" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option17" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option17" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 18.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option18" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option18" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option18" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option18" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 19.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option19" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option19" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option19" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option19" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>Câu 20.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="radio" name="option20" value="option1" onclick="completeQuestion()"> A</li>
+                <li><input type="radio" name="option20" value="option2" onclick="completeQuestion()"> B</li>
+                <li><input type="radio" name="option20" value="option3" onclick="completeQuestion()"> C</li>
+                <li><input type="radio" name="option20" value="option4" onclick="completeQuestion()"> D</li>
+            </ul>
+            <h3>PHẦN III: CÂU HỎI CÓ NHIỀU HƠN MỘT LỰA CHỌN</h3>
+            <p>Với mỗi câu hỏi từ 21 đến 30, thí sinh tick vào TẤT CẢ các phương án mà cho là đúng (Có thể nhiều hơn 1)</p>
+            <h3>Câu 21.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option21" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option21" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option21" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option21" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 22.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option22" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option22" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option22" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option22" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 23.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option23" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option23" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option23" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option23" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 24.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option24" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option24" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option24" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option24" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 25.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option25" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option25" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option25" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option25" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 26.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option26" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option26" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option26" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option26" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 27.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option27" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option27" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option27" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option27" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 28.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option28" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option28" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option28" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option28" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 29.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option29" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option29" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option29" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option29" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>Câu 30.</h3>
+            <p>Nội dung.</p>
+            <ul class="options">
+                <li><input type="checkbox" name="option30" value="option1" onclick="completeQuestion()"> A. </li>
+                <li><input type="checkbox" name="option30" value="option2" onclick="completeQuestion()"> B. </li>
+                <li><input type="checkbox" name="option30" value="option3" onclick="completeQuestion()"> C. </li>
+                <li><input type="checkbox" name="option30" value="option4" onclick="completeQuestion()"> D. </li>
+            </ul>
+            <h3>PHẦN IV: CÂU HỎI TỰ LUẬN TRẢ LỜI NGẮN</h3>
+            <p>Với mỗi câu hỏi từ 31 đến 40, thí sinh trả lời ngắn gọn để thay cho dấu ba chấm trong mỗi câu</p>
+            <h3>Câu 31.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer1" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 32.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer2" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 33.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer3" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 34.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer4" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 35.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer5" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 36.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer6" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 37.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer7" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 38.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer8" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 39.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer9" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+            <h3>Câu 40.</h3>
+            <p>Nội dung.</p>
+            <textarea name="essayAnswer10" rows="6" cols="50" onclick="completeQuestion()"></textarea>
+        </div>
+
+        <!-- Các câu hỏi và lựa chọn khác -->
+        <button class="submit-btn" onclick="handleSubmit()">Nộp bài</button>
+        <script>
+            var completedCount = 0; // Biến lưu trữ số câu hoàn thành
+
+            // Hàm xử lý khi nộp bài
+            function handleSubmit() {
+                var confirmation = confirm("Sau khi nộp bài, bạn sẽ không thể làm lại lần thứ 2. Bạn có chắc chắn muốn nộp bài?");
+                if (confirmation) {
+                    clearInterval(intervalId); // Dừng đếm ngược thời gian
+                    alert("Nộp bài thành công");
+                    // Lưu số câu hoàn thành vào localStorage
+                    localStorage.setItem('completedCount', completedCount);
+                    // Chuyển hướng đến trang chào mừng
+                    window.location.href = "welcome.html";
+                }
+            }
+
+            // Hàm xử lý khi hoàn thành một câu hỏi
+            function completeQuestion() {
+                completedCount++; // Tăng giá trị của completedCount lên 1
+            }
+        </script>
+        <div class = "end">
+            <h3>___HẾT___</h3>
+        </div>
+    </div>
+</body>
+</html>
